@@ -1,0 +1,9 @@
+.inner > div {
+  background-color: #fff9;
+  top: 100%;
+  transition: top 350ms;
+}
+
+.inner:hover > div {
+  top: 0px;
+}

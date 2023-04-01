@@ -1,0 +1,32 @@
+.main-nav {
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--black-900);
+  color: #fff;
+  display: flex;
+  z-index: 999999;
+  transition: left 350ms;
+}
+
+.main-nav > div:nth-child(1) {
+  max-width: 250px;
+}
+
+.main-nav > div:nth-child(2) {
+  background-color: var(--white-900);
+}
+.main-nav ul li {
+  padding: 5px;
+  font-size: 18px;
+  transition: background-color 350ms, transform 350ms;
+}
+
+.main-nav ul li:hover {
+  background-color: var(--grey-500);
+  transform: translateX(10px);
+}
+
+.logo {
+  max-width: 50px;
+}

@@ -26,6 +26,14 @@ a:hover {
   background-color: var(--grey-500);
 }
 
+/* ^ ===========> Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ffd50c;
+}
 /* ^ ===========> Reapeated Classes */
 .bg-yummy-black {
   background-color: var(--black-900);

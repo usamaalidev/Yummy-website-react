@@ -1,14 +1,16 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Card from "../Card/Card.jsx";
+import Loading from "../Loading/Loading.jsx";
 
 export default function Search() {
-  const [meal, setMeals] = useState([]);
+  const [meals, setMeals] = useState([]);
   async function getMeals(type, term) {
     let { data } = await axios.get(
       `https://www.themealdb.com/api/json/v1/1/search.php?${type}=${term}`
     );
-    term ? setMeals(data.meals) : setMeals([]);
+    console.log(data);
+    term && data.meals ? setMeals(data.meals) : setMeals([]);
   }
 
   return (
@@ -20,7 +22,8 @@ export default function Search() {
             className="form-control"
             placeholder="Search with Meal Name"
             onChange={(e) => {
-              getMeals("s", e.target.value);
+              if (/^[a-zA-z]+$/.test(e.target.value))
+                getMeals("s", e.target.value);
             }}
           />
         </div>
@@ -31,17 +34,22 @@ export default function Search() {
             placeholder="Search with First Letter"
             maxLength="1"
             onChange={(e) => {
-              getMeals("f", e.target.value);
+              if (/^[a-zA-z]+$/.test(e.target.value))
+                getMeals("f", e.target.value);
             }}
           />
         </div>
       </div>
 
-      <div className="row g-3">
-        {meal.map((meal) => (
-          <Card mealInfo={meal} />
-        ))}
-      </div>
+      {!meals.length ? (
+        <Loading />
+      ) : (
+        <div className="row g-3">
+          {meals.map((meal, index) => (
+            <Card key={index} mealInfo={meal} />
+          ))}
+        </div>
+      )}
     </>
   );
 }

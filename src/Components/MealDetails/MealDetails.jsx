@@ -83,11 +83,14 @@ export default function MealDetails() {
             {details.strTags && (
               <div className="tags pt-3">
                 <h2 className="m-0">Tags :</h2>
-                {details.strTags.split(",").map((tag, index) => (
-                  <span key={index} className="btn btn-primary me-2 mt-2">
-                    {tag}
-                  </span>
-                ))}
+                {details.strTags
+                  .split(",")
+                  .filter((tag) => !!tag)
+                  .map((tag, index) => (
+                    <span key={index} className="btn btn-primary me-2 mt-2">
+                      {tag}
+                    </span>
+                  ))}
               </div>
             )}
 

@@ -1,6 +1,6 @@
 .main-nav {
   top: 0;
-  left: 0;
+  left: -250px;
   height: 100%;
   background-color: var(--black-900);
   color: #fff;

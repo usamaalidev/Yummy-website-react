@@ -4,13 +4,13 @@ import { useParams } from "react-router-dom";
 import Card from "../Card/Card.jsx";
 import Loading from "../Loading/Loading.jsx";
 
-export default function CategoryMeals() {
+export default function IngredientDetails() {
   const [meals, setMeals] = useState([]);
-  let { category } = useParams();
+  let { ingredient } = useParams();
 
   async function getData() {
     let { data } = await axios.get(
-      `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`
+      `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
     );
     console.log(data);
     setMeals(data.meals);

@@ -6,24 +6,26 @@ import logo from "../../assets/images/logo.png";
 export default function Sidebar() {
   let sidebar = useRef(null);
   let innerSideBar = useRef(null);
+  let menuIcon = useRef(null);
 
   function changeStatus() {
-    let width = innerSideBar.current.offsetWidth;
     let position = window
       .getComputedStyle(sidebar.current)
       .getPropertyValue("left");
 
     if (position == "0px") {
-      sidebar.current.style.left = `-${width}px`;
+      closeSidebar();
     } else {
       sidebar.current.style.left = `0px`;
+      menuIcon.current.classList.replace("fa-bars", "fa-xmark");
     }
   }
 
-  useEffect(() => {
+  function closeSidebar() {
     let width = innerSideBar.current.offsetWidth;
     sidebar.current.style.left = `-${width}px`;
-  }, []);
+    menuIcon.current.classList.replace("fa-xmark", "fa-bars");
+  }
 
   return (
     <>
@@ -34,27 +36,47 @@ export default function Sidebar() {
         >
           <ul className="list-unstyled">
             <li className="p-0 mb-1">
-              <NavLink to="/search" className="w-100 d-inline-block p-2">
+              <NavLink
+                to="/search"
+                className="w-100 d-inline-block p-2"
+                onClick={closeSidebar}
+              >
                 Search
               </NavLink>
             </li>
             <li className="p-0 mb-1">
-              <NavLink to="/categories" className="w-100 d-inline-block p-2">
+              <NavLink
+                to="/categories"
+                className="w-100 d-inline-block p-2"
+                onClick={closeSidebar}
+              >
                 Categories
               </NavLink>
             </li>
             <li className="p-0 mb-1">
-              <NavLink to="/area" className="w-100 d-inline-block p-2">
+              <NavLink
+                to="/area"
+                className="w-100 d-inline-block p-2"
+                onClick={closeSidebar}
+              >
                 Area
               </NavLink>
             </li>
             <li className="p-0 mb-1">
-              <NavLink to="/ingredients" className="w-100 d-inline-block p-2">
+              <NavLink
+                to="/ingredients"
+                className="w-100 d-inline-block p-2"
+                onClick={closeSidebar}
+              >
                 Ingredients
               </NavLink>
             </li>
             <li className="p-0 mb-1">
-              <NavLink to="/contact" className="w-100 d-inline-block p-2">
+              <NavLink
+                to="/contact"
+                className="w-100 d-inline-block p-2"
+                onClick={closeSidebar}
+              >
                 Contact Us
               </NavLink>
             </li>
@@ -75,7 +97,7 @@ export default function Sidebar() {
           </div>
         </div>
         <div className="text-black px-2 py-3 d-flex flex-column justify-content-between align-items-center">
-          <NavLink className="logo" to="/">
+          <NavLink className="logo" to="/" onClick={closeSidebar}>
             <img
               src={logo}
               className={`${style.logo} pointer`}
@@ -85,6 +107,7 @@ export default function Sidebar() {
           <i
             className="fa-solid fa-bars fa-2x pointer"
             onClick={changeStatus}
+            ref={menuIcon}
           ></i>
           <div className="icons d-flex flex-column gap-2">
             <i className="fa-solid fa-earth-americas pointer"></i>

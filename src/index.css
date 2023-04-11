@@ -47,6 +47,10 @@ a:hover {
   cursor: pointer;
 }
 
+.vh-85 {
+  height: 85vh;
+}
+
 /* ^ ===========> Loading */
 
 .loader {

@@ -16,8 +16,7 @@ export default function Sidebar() {
     if (position == "0px") {
       closeSidebar();
     } else {
-      sidebar.current.style.left = `0px`;
-      menuIcon.current.classList.replace("fa-bars", "fa-xmark");
+      openSidebar();
     }
   }
 
@@ -25,6 +24,11 @@ export default function Sidebar() {
     let width = innerSideBar.current.offsetWidth;
     sidebar.current.style.left = `-${width}px`;
     menuIcon.current.classList.replace("fa-xmark", "fa-bars");
+  }
+
+  function openSidebar() {
+    sidebar.current.style.left = `0px`;
+    menuIcon.current.classList.replace("fa-bars", "fa-xmark");
   }
 
   return (
